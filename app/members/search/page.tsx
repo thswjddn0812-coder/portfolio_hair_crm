@@ -50,6 +50,29 @@ export default function SearchMemberPage() {
     }
   }, [isAuthenticated, authLoading, router]);
 
+  // 페이지 로드 시 전체 회원 목록 가져오기
+  useEffect(() => {
+    if (!authLoading && isAuthenticated) {
+      loadAllMembers();
+    }
+  }, [authLoading, isAuthenticated]);
+
+  const loadAllMembers = async () => {
+    setLoading(true);
+    setError('');
+
+    try {
+      // name과 phone을 모두 undefined로 전달하면 전체 회원 조회
+      const data = await membersAPI.search(undefined, undefined);
+      setMembers(data);
+    } catch (err: any) {
+      setError(err.response?.data?.message || '회원 목록을 불러오는데 실패했습니다.');
+      setMembers([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -69,15 +92,16 @@ export default function SearchMemberPage() {
     }
   };
 
-  const handleClear = () => {
+  const handleClear = async () => {
     setName('');
     setPhone('');
-    setMembers([]);
     setError('');
     setExpandedMemberId(null);
     setVisitRecord(null);
     setViewingRecordsMemberId(null);
     setVisitRecords([]);
+    // 초기화 시 전체 회원 목록 다시 불러오기
+    await loadAllMembers();
   };
 
   const handleViewRecords = async (memberId: number) => {
@@ -232,15 +256,16 @@ export default function SearchMemberPage() {
               <div className="flex gap-4">
                 <button
                   type="submit"
-                  disabled={loading || (!name.trim() && !phone.trim())}
+                  disabled={loading}
                   className="flex-1 py-3 bg-pink-500 text-white rounded-lg font-semibold hover:bg-pink-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
-                  {loading ? '검색 중...' : '검색'}
+                  {loading ? '검색 중...' : name.trim() || phone.trim() ? '검색' : '전체 조회'}
                 </button>
                 <button
                   type="button"
                   onClick={handleClear}
-                  className="flex-1 py-3 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+                  disabled={loading}
+                  className="flex-1 py-3 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
                 >
                   초기화
                 </button>
@@ -251,7 +276,7 @@ export default function SearchMemberPage() {
           {members.length > 0 && (
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                검색 결과 ({members.length}명)
+                {name.trim() || phone.trim() ? `검색 결과` : `전체 회원`} ({members.length}명)
               </h2>
               <div className="space-y-4">
                 {members.map((member) => (
@@ -458,9 +483,15 @@ export default function SearchMemberPage() {
             </div>
           )}
 
-          {members.length === 0 && !loading && (name || phone) && (
+          {members.length === 0 && !loading && (name.trim() || phone.trim()) && (
             <div className="bg-white rounded-lg shadow-lg p-8 text-center">
               <p className="text-gray-600">검색 결과가 없습니다.</p>
+            </div>
+          )}
+
+          {members.length === 0 && !loading && !name.trim() && !phone.trim() && (
+            <div className="bg-white rounded-lg shadow-lg p-8 text-center">
+              <p className="text-gray-600">등록된 회원이 없습니다.</p>
             </div>
           )}
         </div>
