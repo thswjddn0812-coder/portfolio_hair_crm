@@ -79,6 +79,10 @@ export const visitRecordsAPI = {
     const response = await api.get(`/visit-records/members/${memberId}`);
     return response.data;
   },
+  getByDate: async (date: string) => {
+    const response = await api.get(`/visit-records/Date?date=${date}`);
+    return response.data;
+  },
 };
 
 export default api;

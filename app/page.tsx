@@ -40,7 +40,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
             <Link
               href="/members/add"
               className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
@@ -67,6 +67,21 @@ export default function Home() {
                 </h2>
                 <p className="text-gray-600">
                   회원 정보를 검색합니다
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="/sales"
+              className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div className="text-center">
+                <div className="text-5xl mb-4">💰</div>
+                <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                  매출 조회
+                </h2>
+                <p className="text-gray-600">
+                  날짜별 매출을 조회합니다
                 </p>
               </div>
             </Link>
