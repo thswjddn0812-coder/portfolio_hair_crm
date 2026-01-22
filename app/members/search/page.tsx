@@ -41,6 +41,7 @@ export default function SearchMemberPage() {
     visited_at: string;
   } | null>(null);
   const [savingVisit, setSavingVisit] = useState(false);
+  const [deletingMemberId, setDeletingMemberId] = useState<number | null>(null);
   const { isAuthenticated, loading: authLoading } = useAuth();
   const router = useRouter();
 
@@ -186,6 +187,48 @@ export default function SearchMemberPage() {
     }
   };
 
+  const handleDeleteMember = async (memberId: number, memberName: string) => {
+    if (!confirm(`${memberName}님을 정말 삭제하시겠습니까?\n이 작업은 되돌릴 수 없습니다.`)) {
+      return;
+    }
+
+    setDeletingMemberId(memberId);
+    setError('');
+
+    try {
+      await membersAPI.delete(memberId);
+      
+      // 삭제 성공 시 목록 새로고침
+      if (name.trim() || phone.trim()) {
+        // 검색 중이면 검색 결과 재조회
+        const data = await membersAPI.search(
+          name.trim() || undefined,
+          phone.trim() || undefined
+        );
+        setMembers(data);
+      } else {
+        // 전체 목록이면 전체 목록 재조회
+        await loadAllMembers();
+      }
+
+      // 열려있는 상태 초기화
+      if (expandedMemberId === memberId) {
+        setExpandedMemberId(null);
+        setVisitRecord(null);
+      }
+      if (viewingRecordsMemberId === memberId) {
+        setViewingRecordsMemberId(null);
+        setVisitRecords([]);
+      }
+
+      alert('회원이 성공적으로 삭제되었습니다.');
+    } catch (err: any) {
+      setError(err.response?.data?.message || '회원 삭제에 실패했습니다.');
+    } finally {
+      setDeletingMemberId(null);
+    }
+  };
+
   if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -321,6 +364,13 @@ export default function SearchMemberPage() {
                           className="px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-colors text-sm font-semibold"
                         >
                           {expandedMemberId === member.id ? '접기' : '기록 입력'}
+                        </button>
+                        <button
+                          onClick={() => handleDeleteMember(member.id, member.name)}
+                          disabled={deletingMemberId === member.id}
+                          className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed"
+                        >
+                          {deletingMemberId === member.id ? '삭제 중...' : '삭제'}
                         </button>
                       </div>
                     </div>

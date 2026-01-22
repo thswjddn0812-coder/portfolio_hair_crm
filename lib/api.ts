@@ -56,6 +56,10 @@ export const membersAPI = {
     const response = await api.get(`/members/All?${params.toString()}`);
     return response.data;
   },
+  delete: async (memberId: number) => {
+    const response = await api.delete(`/members/${memberId}`);
+    return response.data;
+  },
 };
 
 // Visit Records API
