@@ -28,7 +28,7 @@ export default function Home() {
               장미 미용실
             </h1>
             <p className="text-lg text-gray-600">
-              환영합니다, 형은은님!
+              환영합니다, 김형은님!
             </p>
           </div>
 
