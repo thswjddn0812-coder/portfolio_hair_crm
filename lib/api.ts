@@ -8,6 +8,7 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
   withCredentials: true, // 쿠키 자동 전송
+  timeout: 10000, // 10초 타임아웃
 });
 
 // 응답 인터셉터: 401 에러 처리

@@ -242,20 +242,20 @@ export default function SearchMemberPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <div className="mb-6">
             <Link
               href="/"
-              className="text-pink-500 hover:text-pink-600 font-semibold"
+              className="text-black hover:text-gray-700 font-semibold underline"
             >
               ← 홈으로
             </Link>
           </div>
 
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-6">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+          <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-8 mb-6">
+            <h1 className="text-3xl font-bold text-black mb-6 text-center">
               회원 검색
             </h1>
 
@@ -276,7 +276,7 @@ export default function SearchMemberPage() {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-gray-900"
                     placeholder="이름을 입력하세요"
                   />
                 </div>
@@ -290,7 +290,7 @@ export default function SearchMemberPage() {
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-gray-900"
                     placeholder="전화번호를 입력하세요"
                   />
                 </div>
@@ -300,7 +300,7 @@ export default function SearchMemberPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 py-3 bg-pink-500 text-white rounded-lg font-semibold hover:bg-pink-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                  className="flex-1 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
                   {loading ? '검색 중...' : name.trim() || phone.trim() ? '검색' : '전체 조회'}
                 </button>
@@ -324,7 +324,7 @@ export default function SearchMemberPage() {
               <div className="space-y-4">
                 {members.map((member) => (
                   <div key={member.id} className="border border-gray-300 rounded-lg overflow-hidden">
-                    <div className="bg-pink-50 p-4 flex justify-between items-center">
+                    <div className="bg-gray-50 p-4 flex justify-between items-center">
                       <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4 text-gray-900">
                         <div>
                           <span className="font-semibold">이름: </span>
@@ -361,7 +361,7 @@ export default function SearchMemberPage() {
                         </button>
                         <button
                           onClick={() => handleExpandMember(member.id)}
-                          className="px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-colors text-sm font-semibold"
+                          className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-semibold"
                         >
                           {expandedMemberId === member.id ? '접기' : '기록 입력'}
                         </button>
@@ -445,7 +445,7 @@ export default function SearchMemberPage() {
                                 setVisitRecord({ ...visitRecord, treatment: e.target.value })
                               }
                               required
-                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-gray-900"
                               placeholder="예: 커트, 펌, 전체염색 등"
                             />
                           </div>
@@ -463,7 +463,7 @@ export default function SearchMemberPage() {
                                 onChange={(e) =>
                                   setVisitRecord({ ...visitRecord, price: e.target.value })
                                 }
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-gray-900"
                                 placeholder="가격을 입력하세요"
                               />
                             </div>
@@ -479,7 +479,7 @@ export default function SearchMemberPage() {
                                 onChange={(e) =>
                                   setVisitRecord({ ...visitRecord, visited_at: e.target.value })
                                 }
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-gray-900"
                               />
                             </div>
                           </div>
@@ -495,7 +495,7 @@ export default function SearchMemberPage() {
                                 setVisitRecord({ ...visitRecord, memo: e.target.value })
                               }
                               rows={3}
-                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-gray-900"
                               placeholder="예: 약간 짧게 원하심, 영양 추가함 등"
                             />
                           </div>
@@ -504,7 +504,7 @@ export default function SearchMemberPage() {
                             <button
                               type="submit"
                               disabled={savingVisit || !visitRecord.treatment.trim()}
-                              className="flex-1 py-2 bg-pink-500 text-white rounded-lg font-semibold hover:bg-pink-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                              className="flex-1 py-2 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
                             >
                               {savingVisit ? '저장 중...' : '저장'}
                             </button>

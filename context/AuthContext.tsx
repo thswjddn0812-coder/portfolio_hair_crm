@@ -29,10 +29,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         const profile = await authAPI.getProfile();
         setUser(profile);
-      } catch (error) {
+      } catch (error: any) {
         // 401 에러는 정상적인 경우 (로그인하지 않은 상태)
+        // 네트워크 에러나 타임아웃도 정상적으로 처리
+        console.log('Auth check failed:', error?.message || 'Unknown error');
         setUser(null);
       } finally {
+        // 항상 loading을 false로 설정하여 무한 로딩 방지
         setLoading(false);
       }
     };

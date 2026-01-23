@@ -70,21 +70,21 @@ export default function SalesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           <div className="mb-6">
             <Link
               href="/"
-              className="text-pink-500 hover:text-pink-600 font-semibold"
+              className="text-black hover:text-gray-700 font-semibold underline"
             >
               ← 홈으로
             </Link>
           </div>
 
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-6">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-              💰 매출 조회
+          <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-8 mb-6">
+            <h1 className="text-3xl font-bold text-black mb-6 text-center">
+              매출 조회
             </h1>
 
             <div className="mb-6">
@@ -99,7 +99,7 @@ export default function SalesPage() {
                   setSelectedDate(e.target.value);
                   handleDateChange(e.target.value);
                 }}
-                className="w-full md:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900"
+                className="w-full md:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-gray-900"
               />
             </div>
 
@@ -117,11 +117,11 @@ export default function SalesPage() {
 
             {!loading && selectedDate && (
               <div className="mt-6">
-                <div className="bg-pink-50 p-4 rounded-lg mb-6">
+                <div className="bg-gray-50 p-4 rounded-lg mb-6 border border-gray-200">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
                     <div>
                       <p className="text-sm text-gray-600 mb-1">선택한 날짜</p>
-                      <p className="text-2xl font-bold text-gray-900">
+                      <p className="text-2xl font-bold text-black">
                         {new Date(selectedDate).toLocaleDateString('ko-KR', {
                           year: 'numeric',
                           month: 'long',
@@ -132,7 +132,7 @@ export default function SalesPage() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-600 mb-1">총 매출</p>
-                      <p className="text-2xl font-bold text-pink-600">
+                      <p className="text-2xl font-bold text-black">
                         {totalSales.toLocaleString()}원
                       </p>
                     </div>
@@ -148,18 +148,18 @@ export default function SalesPage() {
           </div>
 
           {!loading && records.length > 0 && (
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-8">
+              <h2 className="text-2xl font-bold text-black mb-4">
                 방문 기록 ({records.length}건)
               </h2>
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse">
                   <thead>
-                    <tr className="bg-pink-100">
-                      <th className="border border-gray-300 px-4 py-3 text-left text-gray-900">시간</th>
-                      <th className="border border-gray-300 px-4 py-3 text-left text-gray-900">시술 내용</th>
-                      <th className="border border-gray-300 px-4 py-3 text-left text-gray-900">가격</th>
-                      <th className="border border-gray-300 px-4 py-3 text-left text-gray-900">메모</th>
+                    <tr className="bg-gray-100">
+                      <th className="border border-gray-300 px-4 py-3 text-left text-black">시간</th>
+                      <th className="border border-gray-300 px-4 py-3 text-left text-black">시술 내용</th>
+                      <th className="border border-gray-300 px-4 py-3 text-left text-black">가격</th>
+                      <th className="border border-gray-300 px-4 py-3 text-left text-black">메모</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -186,11 +186,11 @@ export default function SalesPage() {
                     ))}
                   </tbody>
                   <tfoot>
-                    <tr className="bg-pink-50 font-bold">
-                      <td colSpan={2} className="border border-gray-300 px-4 py-3 text-right text-gray-900">
+                    <tr className="bg-gray-50 font-bold">
+                      <td colSpan={2} className="border border-gray-300 px-4 py-3 text-right text-black">
                         합계
                       </td>
-                      <td className="border border-gray-300 px-4 py-3 text-gray-900">
+                      <td className="border border-gray-300 px-4 py-3 text-black">
                         {totalSales.toLocaleString()}원
                       </td>
                       <td className="border border-gray-300 px-4 py-3"></td>

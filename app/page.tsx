@@ -15,28 +15,20 @@ export default function Home() {
     }
   }, [isAuthenticated, loading, router]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl">로딩 중...</div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
+  if (!loading && !isAuthenticated) {
     return null;
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">
-              🌹 로즈헤어 미용실
+            <h1 className="text-4xl font-bold text-black mb-2">
+              장미 미용실
             </h1>
             <p className="text-lg text-gray-600">
-              환영합니다, {user?.name}님!
+              환영합니다, 형은은님!
             </p>
           </div>
 
@@ -93,7 +85,7 @@ export default function Home() {
                 await logout();
                 router.push('/login');
               }}
-              className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+              className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
             >
               로그아웃
             </button>

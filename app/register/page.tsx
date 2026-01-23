@@ -58,11 +58,11 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg border border-gray-200">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            🌹 로즈헤어
+          <h1 className="text-3xl font-bold text-black mb-2">
+            로즈헤어
           </h1>
           <p className="text-gray-600">회원가입</p>
         </div>
@@ -91,7 +91,7 @@ export default function RegisterPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-gray-900"
                 placeholder="이름을 입력하세요"
               />
             </div>
@@ -107,7 +107,7 @@ export default function RegisterPage() {
                 onChange={(e) => setUsername(e.target.value)}
                 required
                 maxLength={12}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-gray-900"
                 placeholder="아이디를 입력하세요 (최대 12자)"
               />
             </div>
@@ -124,7 +124,7 @@ export default function RegisterPage() {
                 required
                 minLength={4}
                 maxLength={12}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-gray-900"
                 placeholder="비밀번호를 입력하세요 (4-12자)"
               />
             </div>
@@ -141,7 +141,7 @@ export default function RegisterPage() {
                 required
                 minLength={4}
                 maxLength={12}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-gray-900"
                 placeholder="비밀번호를 다시 입력하세요"
               />
             </div>
@@ -149,7 +149,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-pink-500 text-white rounded-lg font-semibold hover:bg-pink-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
               {loading ? '가입 중...' : '회원가입'}
             </button>
@@ -159,7 +159,7 @@ export default function RegisterPage() {
         <div className="mt-6 text-center">
           <p className="text-gray-600">
             이미 계정이 있으신가요?{' '}
-            <Link href="/login" className="text-pink-500 hover:text-pink-600 font-semibold">
+            <Link href="/login" className="text-black hover:text-gray-700 font-semibold underline">
               로그인
             </Link>
           </p>
